@@ -13,16 +13,22 @@ import java.util.Scanner;
 
 public class ScheduleMaker {
 
-    //some constants to represent tasks ScheduleMaker can do.
-    static final int ADD_CLASS = 1;
-    static final int REMOVE_CLASS = 2;
-    static final int SHOW_SCHED = 3;
-    static final int QUIT = 4;
-    static final String INVALID_OPTION = "Invalid Option";
-
+    /** Menu option number for adding a class. */
+    private static final int ADD_CLASS = 1;
+    /** Menu option number for removing a class. */
+    private static final int REMOVE_CLASS = 2;
+    /** Menu option number for showing the current schedule. */
+    private static final int SHOW_SCHED = 3;
+    /** Menu option number to quit the program. */
+    private static final int QUIT = 4;
+    /** Error message displayed when user inputs an invalid option. */
+    private static final String INVALID_OPTION = "Invalid option";
+    /** List of the available courses. */
     private CourseList courselist;
+    /** The current schedule, containing some sessions. */
     private Schedule schedule;
-    private static Scanner in = new Scanner(System.in);
+    /** Scanner to read user input. */
+    private Scanner in;
 
     /**
      * A constructor for ScheduleMaker

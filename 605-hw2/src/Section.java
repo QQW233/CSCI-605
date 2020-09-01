@@ -8,11 +8,11 @@ import java.util.List;
  */
 public class Section {
 
-    /** DAYSTRING represents days from Monday to Friday, each with a single capital letter. */
-    public static String DAYSTRING = "MTWRF";
+    /** represents days from Monday to Friday, each with a single capital letter. */
+    public static final String DAYSTRING = "MTWRF";
     /** name of the class section. */
     private String name;
-    /** meetDays records on which days the class section takes place. It is a List of length 5 and use true to represent that this class takes place on that specific day and false if not. */
+    /** records on which days the class section takes place. It is a List of length 5 and use true to represent that this class takes place on that specific day and false if not. */
     private List<Boolean> meetDays;
     /** startTime of the class section */
     private int startTime;
@@ -39,6 +39,7 @@ public class Section {
      * @return whether or not the given object is the same as this one. If so, return true.
      */
     public boolean equals(Object other){
+        // First check class type, then check each field.
         if (!(other instanceof Section))
             return false;
         if (!this.name.equals(((Section) other).name))
@@ -57,6 +58,7 @@ public class Section {
      */
     public boolean inConflict(Section other){
         for(int i=0; i < 5; i++) {
+            // for each day, check if two sections take place at overlapping time.
             if (other.meetDays.get(i) && this.meetDays.get(i) && !(other.startTime > this.endTime || other.endTime < this.startTime))
                 return true;
         }

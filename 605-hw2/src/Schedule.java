@@ -59,6 +59,7 @@ public class Schedule {
      * @return whether or not the specific section fits the current schedule. If so, return true.
      */
     public boolean fits(Section s){
+        // for each class section in the schedule checks if there is a conflict.
         for(int i=0; i < classes.size(); i++)
             if(s.inConflict(classes.get(i)))
                 return false;

@@ -12,6 +12,8 @@ import java.util.Scanner;
  */
 
 public class CourseList {
+    
+    /** Records all the available courses */
     private List<Section> sections;
 
     /**
