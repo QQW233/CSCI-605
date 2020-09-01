@@ -1,3 +1,5 @@
+package hw2;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -5,9 +7,10 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * Courselist contains a list of sections available for the user to pick from.
+ * CourseList is used to store the information about the available courses and perform relevant operations.
  *
  * @author Qiwen Quan, qq5575@g.rit.edu
+ * @author Steve Gao, sg2369@rit.edu
  */
 
 public class CourseList {

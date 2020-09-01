@@ -1,3 +1,5 @@
+package hw2;
+
 import static java.lang.System.exit;
 
 /**
@@ -7,6 +9,7 @@ import static java.lang.System.exit;
  * and do user desired task.
  *
  * @author Qiwen Quan, qq5575@g.rit.edu
+ * @author Steve Gao, sg2369@rit.edu
  */
 
 public class ScheduleMaker {
