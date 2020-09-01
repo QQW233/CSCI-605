@@ -1,4 +1,5 @@
 import static java.lang.System.exit;
+import java.util.Scanner;
 
 /**
  * ScheduleMaker contains a courselist of all courses available and user's current schedule.
@@ -21,7 +22,7 @@ public class ScheduleMaker {
 
     private CourseList courselist;
     private Schedule schedule;
-    private static java.util.Scanner in = new java.util.Scanner(System.in);
+    private static Scanner in = new Scanner(System.in);
 
     /**
      * A constructor for ScheduleMaker
@@ -60,7 +61,7 @@ public class ScheduleMaker {
             }
         in.nextLine();
         //tests if the course is already in courselist
-        if (input >= courselist.getSize()){
+        if (input >= courselist.getSize() || input < 0){
             System.err.println("Class index out of bound.");
         }
         else if (schedule.contains(courselist.getClass(input))) {
@@ -90,6 +91,10 @@ public class ScheduleMaker {
      * same name from the schedule. Fails if there is no such course.
      */
     public void removeClass() {
+        if(schedule.isEmpty()){
+            System.out.println("You do not have any class on schedule yet.");
+            return;
+        }
         System.out.print("This is your current schedule:\n\n");
         schedule.show();
         System.out.println("\nWhat class would you like to remove (enter the course's name)?");
