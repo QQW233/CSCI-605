@@ -55,7 +55,11 @@ public class CourseList {
     public Section getClass(int cnum){
         return sections.get(cnum);
     }
-
+	
+    /**
+     * getClass is a getter that returns the size of sections
+     * @return the size of sections
+     */
     public int getSize() {return sections.size();}
 
     /**
