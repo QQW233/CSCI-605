@@ -1,5 +1,3 @@
-package hw2;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -101,7 +99,7 @@ public class Schedule {
      * show method displays the current schedule using system output.
      */
     public void show(){
-        System.out.print("\nThis is your current schedule:\n\n");
+        //System.out.print("\nThis is your current schedule:\n\n");
         String[] weekdays = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
         for(int i=0; i < 5; i++){
             System.out.println("----" + weekdays[i] + "----");

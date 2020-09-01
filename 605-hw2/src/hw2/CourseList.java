@@ -1,5 +1,3 @@
-package hw2;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -57,6 +55,8 @@ public class CourseList {
     public Section getClass(int cnum){
         return sections.get(cnum);
     }
+
+    public int getSize() {return sections.size();}
 
     /**
      * toString creates a string representation of the sections

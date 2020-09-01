@@ -1,5 +1,3 @@
-package hw2;
-
 import static java.lang.System.exit;
 
 /**
@@ -53,19 +51,28 @@ public class ScheduleMaker {
         System.out.println(courselist.toString());
         System.out.println("What class would you like to add?");
         //takes next user input int
-        int input = in.nextInt();
+        int input;
+        if (in.hasNextInt()) input = in.nextInt();
+        else {
+            in.nextLine();
+            System.err.println("Please enter a number");
+            return;
+            }
         in.nextLine();
-        //tests if there is time conflict
-        if (!schedule.fits(courselist.getClass(input))){
-            System.out.println("Time for this course conflicts with others on your schedule");
-        }
         //tests if the course is already in courselist
+        if (input >= courselist.getSize()){
+            System.err.println("Class index out of bound.");
+        }
         else if (schedule.contains(courselist.getClass(input))) {
             System.out.println("That section is already on your schedule.");
         }
         //tests if a course with the same name already exists in the schedule
         else if (schedule.contains((courselist.getClass(input)).getCourse())){
             System.out.println("Another section of that course is already on your schedule.");
+        }
+        //tests if there is time conflict
+        else if (!schedule.fits(courselist.getClass(input))){
+            System.out.println("Time for this course conflicts with others on your schedule");
         }
         //add the course to courselist
         else {
@@ -83,10 +90,9 @@ public class ScheduleMaker {
      * same name from the schedule. Fails if there is no such course.
      */
     public void removeClass() {
-        System.out.println("This is your current schedule: ");
-        //print the current schedule
+        System.out.print("This is your current schedule:\n\n");
         schedule.show();
-        System.out.println("What class would you like to remove (enter the course's name)?");
+        System.out.println("\nWhat class would you like to remove (enter the course's name)?");
         //reads the next line
         String input = in.nextLine();
         //tests if the section exists in schedule
@@ -111,7 +117,7 @@ public class ScheduleMaker {
      * other function.
      */
     public void printMenu() {
-        System.out.println("Choices are");
+        System.out.println("\nChoices are");
         System.out.println("1. Find a class to add to your schedule");
         System.out.println("2. Remove a class from your schedule");
         System.out.println("3. Print your schedule");
@@ -122,7 +128,7 @@ public class ScheduleMaker {
 
     /**
      * main method that uses the command line argument to create a new schedulemaker
-     * it will ask the user which action to take and use the schdulemaker to execute.
+     * it will ask the user which action to take and use the schedulemaker to execute.
      *
      * @param args - should be a filename that directs to a file containing the courselist
      * under the running directory.
@@ -141,10 +147,12 @@ public class ScheduleMaker {
         System.out.println("Welcome to Schedule Maker!");
         schedulemaker.printMenu();
         //read next int
-        int input = in.nextInt();
-        in.nextLine();
+        int input;
         //execute until the user input is 4
-        while (input != QUIT){
+        while (in.hasNextInt()){
+            input = in.nextInt();
+            in.nextLine();
+            if (input == QUIT) break;
             //call schedulemaker functions to perform the asked action
             switch (input) {
                 case ADD_CLASS -> schedulemaker.addClass();
@@ -153,8 +161,6 @@ public class ScheduleMaker {
                 default -> System.out.println(INVALID_OPTION);
             }
             schedulemaker.printMenu();
-            input = in.nextInt();
-            in.nextLine();
         }
         //exiting message
         System.out.println("Thanks for using Schedule Maker.");
