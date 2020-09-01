@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"<Unnamed>","l":"CourseList"},{"p":"<Unnamed>","l":"Schedule"},{"p":"<Unnamed>","l":"ScheduleMaker"},{"p":"<Unnamed>","l":"Section"},{"l":"所有类","url":"allclasses-index.html"}]
