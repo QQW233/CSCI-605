@@ -1,7 +1,8 @@
 import static java.lang.System.exit;
+import java.util.Scanner;
 
 /**
- * ScheduleMaker contains a courselist of all courses available and user's current schedule.
+ * hw2.ScheduleMaker contains a courselist of all courses available and user's current schedule.
  * It can add or remove classes from courselist to schedule or show current schedule.
  * SchduleMaker also contains a main function that will take command line arguments
  * and do user desired task.
@@ -12,19 +13,25 @@ import static java.lang.System.exit;
 
 public class ScheduleMaker {
 
-    //some constants to represent tasks ScheduleMaker can do.
-    static final int ADD_CLASS = 1;
-    static final int REMOVE_CLASS = 2;
-    static final int SHOW_SCHED = 3;
-    static final int QUIT = 4;
-    static final String INVALID_OPTION = "Invalid Option";
-
+    /** Menu option number for adding a class. */
+    private static final int ADD_CLASS = 1;
+    /** Menu option number for removing a class. */
+    private static final int REMOVE_CLASS = 2;
+    /** Menu option number for showing the current schedule. */
+    private static final int SHOW_SCHED = 3;
+    /** Menu option number to quit the program. */
+    private static final int QUIT = 4;
+    /** Error message displayed when user inputs an invalid option. */
+    private static final String INVALID_OPTION = "Invalid option";
+    /** List of the available courses. */
     private CourseList courselist;
+    /** The current schedule, containing some sessions. */
     private Schedule schedule;
-    private static java.util.Scanner in = new java.util.Scanner(System.in);
+    /** Scanner to read user input. */
+    private Scanner in;
 
     /**
-     * A constructor for ScheduleMaker
+     * A constructor for hw2.ScheduleMaker
      *
      * @param filename a filename of a txt file containing the courselist
      *
@@ -34,6 +41,7 @@ public class ScheduleMaker {
     public ScheduleMaker(String filename) {
         courselist = new CourseList(filename);
         schedule = new Schedule();
+        in = new Scanner(System.in);
     }
 
     /**
@@ -52,15 +60,15 @@ public class ScheduleMaker {
         System.out.println("What class would you like to add?");
         //takes next user input int
         int input;
-        if (in.hasNextInt()) input = in.nextInt();
+        if (this.in.hasNextInt()) input = this.in.nextInt();
         else {
-            in.nextLine();
+            this.in.nextLine();
             System.err.println("Please enter a number");
             return;
             }
         in.nextLine();
         //tests if the course is already in courselist
-        if (input >= courselist.getSize()){
+        if (input >= courselist.getSize() || input < 0){
             System.err.println("Class index out of bound.");
         }
         else if (schedule.contains(courselist.getClass(input))) {
@@ -90,11 +98,15 @@ public class ScheduleMaker {
      * same name from the schedule. Fails if there is no such course.
      */
     public void removeClass() {
+        if(schedule.isEmpty()){
+            System.out.println("You do not have any class on schedule yet.");
+            return;
+        }
         System.out.print("This is your current schedule:\n\n");
         schedule.show();
         System.out.println("\nWhat class would you like to remove (enter the course's name)?");
         //reads the next line
-        String input = in.nextLine();
+        String input = this.in.nextLine();
         //tests if the section exists in schedule
         if(schedule.contains(input)){
             if (schedule.remove(input)) {
@@ -138,32 +150,40 @@ public class ScheduleMaker {
     public static void main(String[] args) {
         //tests if the args is empty
         if (args.length == 0) {
-            System.err.println("Usage: java ScheduleMaker course-list-file");
+            System.err.println("Usage: java hw2.ScheduleMaker course-list-file");
             exit(0);
         }
         //creates a new schedulemaker using the given filename
         ScheduleMaker schedulemaker = new ScheduleMaker(args[0]);
         //print menu for the first time
-        System.out.println("Welcome to Schedule Maker!");
+        System.out.println("Welcome to hw2.Schedule Maker!");
         schedulemaker.printMenu();
         //read next int
         int input;
         //execute until the user input is 4
-        while (in.hasNextInt()){
-            input = in.nextInt();
-            in.nextLine();
-            if (input == QUIT) break;
-            //call schedulemaker functions to perform the asked action
-            switch (input) {
-                case ADD_CLASS -> schedulemaker.addClass();
-                case REMOVE_CLASS -> schedulemaker.removeClass();
-                case SHOW_SCHED -> schedulemaker.schedule.show();
-                default -> System.out.println(INVALID_OPTION);
+        while (schedulemaker.in.hasNext()){
+            // checks if the input is valid
+            if(schedulemaker.in.hasNextInt()){
+                input = schedulemaker.in.nextInt();
+                schedulemaker.in.nextLine();
+                if (input == QUIT) break;
+                //call schedulemaker functions to perform the asked action
+                switch (input) {
+                    case ADD_CLASS -> schedulemaker.addClass();
+                    case REMOVE_CLASS -> schedulemaker.removeClass();
+                    case SHOW_SCHED -> schedulemaker.schedule.show();
+                    default -> System.out.println(INVALID_OPTION);
+                }
+                schedulemaker.printMenu();
             }
-            schedulemaker.printMenu();
+            else{
+                System.err.println("Please enter a number.");
+                schedulemaker.in.nextLine();
+                schedulemaker.printMenu();
+            }
         }
         //exiting message
-        System.out.println("Thanks for using Schedule Maker.");
+        System.out.println("Thanks for using hw2.Schedule Maker.");
     }
 
 
