@@ -1,5 +1,11 @@
-package Expressions;
+package hw3.Expressions;
 
+/**
+ * Specific class for parsing, emitting and evaluating token "-".
+ *
+ * @author Qiwen Quan, qq5575@g.rit.edu
+ * @author Steve Gao, sg2369@rit.edu
+ */
 public class SubExpression implements Expression{
     private final Expression left;
     private final Expression right;

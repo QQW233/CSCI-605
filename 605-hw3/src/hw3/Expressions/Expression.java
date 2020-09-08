@@ -1,9 +1,10 @@
-package Expressions;
+package hw3.Expressions;
 
 /**
  * This interface defines two methods for expressions: evaluate() and emit()
  *
  * @author Qiwen Quan, qq5575@g.rit.edu
+ * @author Steve Gao, sg2369@rit.edu
  */
 public interface Expression {
     /**

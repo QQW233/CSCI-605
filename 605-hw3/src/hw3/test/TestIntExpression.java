@@ -1,12 +1,12 @@
-package test;
+package hw3.test;
 
-import Expressions.*;
+import hw3.Expressions.*;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
 
 /**
- * A test unit for the IntExpression class.
+ * A hw3.test unit for the IntExpression class.
  *
  * @author RIT CS
  */

@@ -1,5 +1,11 @@
-package Expressions;
+package hw3.Expressions;
 
+/**
+ * Specific class for parsing, emitting and evaluating int.
+ *
+ * @author Qiwen Quan, qq5575@g.rit.edu
+ * @author Steve Gao, sg2369@rit.edu
+ */
 public class IntExpression implements Expression{
     private final int value;
 

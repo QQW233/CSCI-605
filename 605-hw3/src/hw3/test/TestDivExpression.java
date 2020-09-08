@@ -1,13 +1,14 @@
-package test;
+package hw3.test;
 
-import Expressions.*;
+import hw3.Expressions.*;
 import org.junit.Test;
 import static junit.framework.TestCase.assertEquals;
 
 /**
- * A test unit for the DivExpression class.
+ * A hw3.test unit for the DivExpression class.
  *
  * @author Qiwen Quan, qq5575@g.rit.edu
+ * @author Steve Gao, sg2369@rit.edu
  */
 public class TestDivExpression {
     @Test
