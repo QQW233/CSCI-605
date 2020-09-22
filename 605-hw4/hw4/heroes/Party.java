@@ -11,15 +11,39 @@ import java.util.List;
  */
 public interface Party {
 
-    /** Add a hero to the party. */
+    /**
+     * Add a hero to the party.
+     *
+     * @param hero the hero to be added
+     */
     void addHero(Hero hero);
-    /** Remove a hero from the party. */
+
+    /**
+     * Remove a hero from the party.
+     *
+     * @return the removed hero.
+     */
     Hero removeHero();
-    /** Get the number of heroes that are in this party */
+
+    /**
+     * Get the number of heroes that are in this party
+     *
+     * @return the number of heroes in this party.
+     */
     int numHeroes();
-    /** Get the team of this party. */
+
+    /**
+     * Get the team of this party.
+     *
+     * @return the team of this party.
+     */
     Team getTeam();
-    /** Get all the heroes that are in this party. */
+
+    /**
+     * Get all the heroes that are in this party.
+     *
+     * @return all the heroes in this party in a List.
+     */
     List<Hero> getHeroes();
 
 }
