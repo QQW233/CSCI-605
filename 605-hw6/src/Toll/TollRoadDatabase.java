@@ -1,5 +1,5 @@
 package Toll;
-
+import Exit.ExitInfo;
 import java.util.*;
 /**
  * TollRoadDatabase takes a filename and read the file to generate all toll information.
@@ -115,7 +115,7 @@ public class TollRoadDatabase implements TollsRUs{
     }
 
     /**
-     * Print the information of given plate tage, and its total toll.
+     * Print the information of given plate tag, and its total toll.
      * @param plate the plate tag to look for
      */
     public void reportPlate(String plate){
@@ -136,6 +136,10 @@ public class TollRoadDatabase implements TollsRUs{
      * @param exit the exit to look for
      */
     public void reportExit(int exit){
+        if(exit < 0 || exit > ExitInfo.LAST_EXIT){
+            System.out.println("Exit does not exist.");
+            return;
+        }
         System.out.println(NL + "EXIT " + exit + " REPORT" + NL + "==============");
         if(exit_database.get(exit) == null) {
             System.out.println();
