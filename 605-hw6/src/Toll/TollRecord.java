@@ -20,6 +20,7 @@ public class TollRecord implements TollsRUs,Comparable<TollRecord>{
     private int departure_exit;
     //speed of the vehicle, may be infinity
     private String speed;
+    //whether or not this vehicle is a speeder
     private Boolean is_speeder;
 
     /**

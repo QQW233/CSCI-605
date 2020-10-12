@@ -16,6 +16,7 @@ class TollRecordTest {
 
     @Test
     public void testdepart() throws Exception {
+        /** This part tests actions related to depart(): TollRecord.report() and TollRecord.getToll(). */
         TollRecord t1 = new TollRecord(60,"DR_J",45);
         TollRecord t2 = new TollRecord(61,"I_AM_STROOT",45);
         t1.depart(150,39);
@@ -28,6 +29,7 @@ class TollRecordTest {
 
     @Test
     void testEquals() throws Exception {
+        /** Tests TollRecord.equals() */
         TollRecord t1 = new TollRecord(60,"DR_J",45);
         t1.depart(150,39);
         TollRecord t2 = new TollRecord(61,"I_AM_STROOT",45);
