@@ -6,8 +6,8 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 /**
- * Zipper adds given file to a destination zip file, will throw ZipperException
- * if error occurred.
+ * Zipper compress given file(s) to a destination zip file.
+ * This class will throw ZipperException if error occurred.
  *
  * @author Qiwen Quan, qq5575@g.rit.edu
  * @author Steve Gao, sg2369@rit.edu
@@ -16,6 +16,7 @@ import java.util.zip.ZipOutputStream;
 public class Zipper {
     /**
      * A zipper method to create a zip file with a set a paths
+     *
      * @param source a set of file paths
      * @param target target destination to output the zip file
      * @return The number of bytes being compressed

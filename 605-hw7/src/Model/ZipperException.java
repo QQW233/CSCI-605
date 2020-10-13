@@ -1,7 +1,7 @@
 package Model;
 
 /**
- * ZipperException handles all possible exceptions in Zipper and Unzipper class.
+ * A customized Exception. ZipperException handles and replaces all possible exceptions in Zipper and Unzipper class.
  *
  * @author Qiwen Quan, qq5575@g.rit.edu
  * @author Steve Gao, sg2369@rit.edu

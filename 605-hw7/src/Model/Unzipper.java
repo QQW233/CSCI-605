@@ -5,15 +5,16 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 /**
- * Unzipper extracts all files in a given zip file to destination directory
- * will throw ZipperException if error occurred.
+ * Unzipper extracts all files in a given zip file to the destination directory.
+ * Throws ZipperException if error occurred.
  *
  * @author Qiwen Quan, qq5575@g.rit.edu
  * @author Steve Gao, sg2369@rit.edu
  */
 public class Unzipper {
     /**
-     * Unzip method that unzips given zip file to a destination
+     * Unzip method that unzips given zip file to a destination directory. This directory will be created during the process.
+     *
      * @param source path to a zip file
      * @param dest destination for output
      * @return A string representation of unzip result
@@ -31,6 +32,7 @@ public class Unzipper {
                     "and saving entries in directory '%s'...\n",source,dest));
             File dir = new File(dest);
             if (!dir.exists()) dir.mkdirs();
+            // extract all the files in the zip file
             while (entry != null){
                 File temp = new File(dest,entry.getName());
                 builder.append(System.getProperty("user.dir")).append(File.separator).append(dest).append(File.separator).append(entry.getName()).append("\n");

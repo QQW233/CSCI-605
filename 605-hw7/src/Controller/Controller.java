@@ -3,23 +3,27 @@ package Controller;
 import Model.Archiver;
 import Model.ZipperException;
 /**
- * Controller used to call methods in module according to input and return the reuslt.
+ * Controller acts as an intermediate layer to communicate between the Model and the View.
+ * It is used to call methods in module according to input and return the result.
  *
  * @author Qiwen Quan, qq5575@g.rit.edu
  * @author Steve Gao, sg2369@rit.edu
  */
 public class Controller {
+
+    /** Archiver is used to maintain the current state of the program and perform relevant actions. */
     private Archiver archiver = new Archiver();
 
     /**
-     * command_parsing takes in a list of commands and decide which method
+     * commandParsing takes in a list of commands and decide which method
      * in archiver to call and return corresponding result.
+     *
      * @param command user command input
      * @return a String indicates the result
      * @throws ZipperException Will throw exception when argument is invalid or
      * exception is thrown in executing.
      */
-    public String command_parsing(String[] command) throws ZipperException {
+    public String commandParsing(String[] command) throws ZipperException {
         switch (command[0]) {
             case "help":
                 return archiver.help();

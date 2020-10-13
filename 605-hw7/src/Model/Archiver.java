@@ -5,25 +5,32 @@ import java.util.HashSet;
 import java.util.Set;
 /**
  * Archiver class used to handle all options and call zipper or unzipper if needed.
+ * This class is also responsible for maintaining the state of the application.
  *
  * @author Qiwen Quan, qq5575@g.rit.edu
  * @author Steve Gao, sg2369@rit.edu
  */
 public class Archiver {
+    /** List of files to be compressed. */
     Set<String> files_list;
 
+    /**
+     * Constructor for the Archiver class. It will initialize the field.
+     */
     public Archiver(){
         files_list = new HashSet<>();
     }
 
     /**
      * Adds a new filename instance to the list of files
+     *
      * @param filename a new file entry
      * @return A string representing the result
      * @throws ZipperException will throw exception if filename does not direct to a file
      */
     public String add(String filename) throws ZipperException {
         File tmp = new File(filename);
+        // Checks if the given file actually exists.
         if (!tmp.exists()||!tmp.isFile())
             throw new ZipperException
                     (String.format("File does not exist: %s",
@@ -33,7 +40,8 @@ public class Archiver {
     }
 
     /**
-     * clears the list of files
+     * Clear the list of files.
+     *
      * @return A string indicating successful execution
      */
     public String clear(){
@@ -43,6 +51,7 @@ public class Archiver {
 
     /**
      * A toString method that prints the content of list of files.
+     *
      * @return A string representing list of files.
      */
     public String toString(){
@@ -66,7 +75,8 @@ public class Archiver {
     }
 
     /**
-     * return the all the available commands.
+     * Return the all the available commands.
+     *
      * @return a String representation of all available commands.
      */
     public String help(){
@@ -81,7 +91,8 @@ public class Archiver {
     }
 
     /**
-     * list all the files and directories under given destination
+     * List all the files and directories under given destination.
+     *
      * @param dest a string directing to a directory
      * @return A string representation of all files and directories under given directory
      * @throws ZipperException will throw exception if the path given is not a directory
@@ -94,6 +105,7 @@ public class Archiver {
             throw new ZipperException(String.format("Path is not a directory: %s",dest));
         }
         builder.append(String.format("Listing files in '%s'...\n",dest));
+        // build the absolute path of the file
         for (File f: files){
             builder.append("  ");
             builder.append(System.getProperty("user.dir"));
@@ -107,7 +119,8 @@ public class Archiver {
     }
 
     /**
-     * Zips all files in files_list to given destination
+     * Zips all files in files_list to given destination.
+     *
      * @param dest a path for the output
      * @return A string indicating whether the execution is successful
      * @throws ZipperException will throw exception if problem is met during zipping
@@ -118,7 +131,8 @@ public class Archiver {
     }
 
     /**
-     * Unzip given file to user desired destination
+     * Unzip given file to user desired destination.
+     *
      * @param source source zip file
      * @param dest output destination
      * @return A string representation of the unzip content
