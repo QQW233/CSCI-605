@@ -1,0 +1,63 @@
+Begin test0. ===============================
+
+The troll scowls "Get in line!" when Al shows up at the bridge.
+Al is starting to cross.
+	Al 1 seconds.
+	Al 2 seconds.
+Al leaves at Merctran.
+The troll scowls "Get in line!" when Bob shows up at the bridge.
+Bob is starting to cross.
+	Bob 1 seconds.
+	Bob 2 seconds.
+	Bob 3 seconds.
+Bob leaves at Sicstine.
+
+=============================== End test0.
+Begin test1. ===============================
+
+The troll scowls "Get in line!" when Al shows up at the bridge.
+Al is starting to cross.
+The troll scowls "Get in line!" when Bob shows up at the bridge.
+Bob is starting to cross.
+	Al 1 seconds.
+The troll scowls "Get in line!" when Cathy shows up at the bridge.
+Cathy is starting to cross.
+	Al 2 seconds.
+	Bob 1 seconds.
+The troll scowls "Get in line!" when Doris shows up at the bridge.
+	Bob 2 seconds.
+Bob leaves at Merctran.
+	Cathy 1 seconds.
+Doris is starting to cross.
+	Al 3 seconds.
+Al leaves at Merctran.
+The troll scowls "Get in line!" when Edith shows up at the bridge.
+Edith is starting to cross.
+	Cathy 2 seconds.
+Cathy leaves at Sicstine.
+	Doris 1 seconds.
+	Edith 1 seconds.
+The troll scowls "Get in line!" when Fred shows up at the bridge.
+Fred is starting to cross.
+	Doris 2 seconds.
+	Fred 1 seconds.
+	Edith 2 seconds.
+	Doris 3 seconds.
+Doris leaves at Sicstine.
+	Edith 3 seconds.
+Edith leaves at Merctran.
+	Fred 2 seconds.
+Fred leaves at Sicstine.
+
+=============================== End test1.
+Begin test2. ===============================
+
+TODO: write a more involved test here.
+TODO: follow the pattern of the example tests.
+
+=============================== End test2.
+Begin test3. ===============================
+
+TODO: write another, more involved test here.
+
+=============================== End test3.
