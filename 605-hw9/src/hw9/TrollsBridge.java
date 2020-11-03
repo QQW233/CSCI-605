@@ -1,20 +1,21 @@
 package hw9;
 
-import java.util.List;
+import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
  * TrollsBridge handles the concurrency among Woolie threads.
  *
- *  @author Qiwen Quan, qq5575@g.rit.edu
- *  @author Steve Gao, sg2369@rit.edu
+ * @author Qiwen Quan, qq5575@g.rit.edu
+ * @author Steve Gao, sg2369@rit.edu
  */
 public class TrollsBridge {
     private final int capacity;
     private int currWoolie;
-    private ConcurrentLinkedQueue<Woolie> woolies;
+    private Queue<Woolie> woolies;
     private int running;
     static final Object lock = new Object();
+    static final Object lock2 = new Object();
 
     /**
      * A constructor method.
@@ -33,13 +34,15 @@ public class TrollsBridge {
      * @param woolie A new incoming woolie
      */
     public void enterBridgePlease(Woolie woolie) {
-        woolies.add(woolie);
-        System.out.printf("The troll scowls \"Get in line!\" when %s shows up at the bridge.%n", woolie.woolieName());
+        // Ensure that the printed order is the same as the actual order of Woolies in the queue.
+        synchronized (lock2){
+            woolies.add(woolie);
+            System.out.printf("The troll scowls \"Get in line!\" when %s shows up at the bridge.%n", woolie.woolieName());
+        }
         synchronized (woolie) {
-            while (running >= capacity) {
+            if (running >= capacity) {
                 try {
                     woolie.wait();
-                    break;
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -60,11 +63,11 @@ public class TrollsBridge {
         synchronized (lock) {
             running -= 1;
         }
+        System.out.printf("%s leaves at %s.%n",woolie.woolieName(),woolie.getDestination());
         if (!woolies.isEmpty()) {
             synchronized (woolies.peek()) {
                 woolies.remove().notify();
             }
         }
-        System.out.printf("%s leaves at %s.%n",woolie.woolieName(),woolie.getDestination());
     }
 }

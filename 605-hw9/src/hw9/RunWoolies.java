@@ -1,6 +1,6 @@
 package hw9;
 
-import org.testng.annotations.Test;
+import org.junit.Test;
 
 /*
  * RunWoolies.java
@@ -13,7 +13,8 @@ import org.testng.annotations.Test;
  * Test by creating a bunch of Woolies and let them cross the TrollsBridge.
  *
  * @author CS @ RIT.EDU
- * @author TODO add your name and login information as a contributor
+ * @author Qiwen Quan, qq5575@g.rit.edu
+ * @author Steve Gao, sg2369@rit.edu
  */
 public class RunWoolies {
 
@@ -30,6 +31,8 @@ public class RunWoolies {
     @Test
     /**
      * test0 is Test Scenario 0, an extremely simple, non-waiting test.
+     * Woolie Bob will arrive at the bridge after Woolie Al leaves the bridge.
+     *
      * test0 provides an example template/pattern for writing a test case.
      */
     public void test0() {
@@ -122,7 +125,8 @@ public class RunWoolies {
 
     @Test
     /**
-     * @TODO Document your test case here
+     * This test tests the scenario that a group of Woolies arrive a few seconds after another group of Woolies
+     * to see if the program actually allows all Woolies to eventually get on the bridge and finish their crossing.
      */
     public void test2() {
 
@@ -149,7 +153,21 @@ public class RunWoolies {
                 new Woolie("Kidd", 2, SIDE_TWO, trollBridge),
         };
 
-        for (int j = 0; j < peds.length; ++j) {
+        for (int j = 0; j < peds.length-3; ++j) {
+            // Run them by calling their start() method.
+            try {
+                peds[j].start();
+                Thread.sleep(delay);         // delay start of next woolie
+            } catch (InterruptedException e) {
+                System.err.println("Abort. Unexpected thread interruption.");
+            }
+        }
+        try{
+            Thread.sleep(7000);
+        } catch (InterruptedException e) {
+            System.err.println("Abort. Unexpected thread interruption.");
+        }
+        for (int j = peds.length-3; j < peds.length; ++j) {
             // Run them by calling their start() method.
             try {
                 peds[j].start();
@@ -172,16 +190,14 @@ public class RunWoolies {
 
     @Test
     /**
-     * @TODO Document your test case here
+     * This test tests the scenario that multiple Woolies are created simultaneously to see if the queue
+     * works correctly and Woolies are called to cross the bridge according to their order of arrival.
      */
     public void test3() {
         System.out.println("Begin test3. ===============================\n");
 
         Thread init = Thread.currentThread();      // init spawns the Woolies
         TrollsBridge trollBridge = new TrollsBridge(3);
-
-        int delay = 1000;
-
         // Create the Woolies and store them in an array.
         Thread peds[] = {
                 new Woolie("Al", 6, SIDE_ONE, trollBridge),
@@ -198,12 +214,7 @@ public class RunWoolies {
 
         for (int j = 0; j < peds.length; ++j) {
             // Run them by calling their start() method.
-            try {
-                peds[j].start();
-                Thread.sleep(delay);         // delay start of next woolie
-            } catch (InterruptedException e) {
-                System.err.println("Abort. Unexpected thread interruption.");
-            }
+            peds[j].start();
         }
         // Now, the test must give the woolies time to finish their crossings.
         for (int j = 0; j < peds.length; ++j) {
@@ -213,7 +224,6 @@ public class RunWoolies {
                 System.err.println("Abort. Unexpected thread interruption.");
             }
         }
-        System.out.println("TODO: write another, more involved test here.");
         System.out.println("\n=============================== End test3.");
     }
 }

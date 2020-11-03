@@ -1,10 +1,10 @@
 package hw9;
 
 /**
- *  Woolie represents a single woolie object waiting to get across a bridge.
+ * Woolie represents a single woolie object waiting to get across a bridge.
  *
- *  @author Qiwen Quan, qq5575@g.rit.edu
- *  @author Steve Gao, sg2369@rit.edu
+ * @author Qiwen Quan, qq5575@g.rit.edu
+ * @author Steve Gao, sg2369@rit.edu
  */
 public class Woolie extends Thread{
     private final String name;
@@ -13,7 +13,8 @@ public class Woolie extends Thread{
     private final TrollsBridge bridge;
 
     /**
-     * A Woolie constructor
+     * A Woolie constructor. Initialize the fields.
+     *
      * @param name  name of the woolie
      * @param time crossing time the woolie would spend to cross the bridge
      * @param destination destination city
@@ -31,7 +32,7 @@ public class Woolie extends Thread{
      * cross the bridge and get off the bridge.
      */
     @Override
-    public synchronized void run() {
+    public void run() {
         bridge.enterBridgePlease(this);
         try {
             for (int i = 1; i <= crossingTime; i++){
